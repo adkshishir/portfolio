@@ -6,7 +6,7 @@ const Particle = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   useEffect(() => {
     setToggle(true);
-  });
+  }, []);
   return (
     <>
       <style jsx>
