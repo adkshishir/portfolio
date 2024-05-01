@@ -28,8 +28,8 @@ const Particle = () => {
         `}
       </style>
       <div id='particles-js' style={{ backgroundColor: '#00000000' }}></div>
-      <script src='http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></script>
-      <script src='http://threejs.org/examples/js/libs/stats.min.js'></script>
+      <script src='https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js'></script>
+      <script src='https://threejs.org/examples/js/libs/stats.min.js'></script>
       {toggle && <script async src='/particle-file/index.js'></script>}
     </>
   );
