@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Particle from './components/Particle';
 import Link from 'next/link';
+import Image from 'next/image';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -56,7 +56,7 @@ export default async function RootLayout({
           {/*Navigator-fullscreen*/}
           <div id='navigation-content'>
             <div className='logo'>
-              <img src='images/logo.png' alt='logo' />
+              <img src='/images/logo.png' alt='logo' />
             </div>
             <div className='navigation-close'>
               <span className='close-first' />
@@ -69,22 +69,29 @@ export default async function RootLayout({
               <Link href='/about' data-text='ABOUT' id='about-link'>
                 ABOUT
               </Link>
-              <a href='/blog' data-text='BLOG' id='blog-link'>
+              <Link href='/blog' data-text='BLOG' id='blog-link'>
                 BLOG
-              </a>
-              <a href='/portfolio' data-text='PORTFOLIO' id='portfolio-link'>
+              </Link>
+              <Link href='/portfolio' data-text='PORTFOLIO' id='portfolio-link'>
                 PORTFOLIO
-              </a>
-              <a href='/contact' data-text='CONTACT' id='contact-link'>
+              </Link>
+              <Link href='/contact' data-text='CONTACT' id='contact-link'>
                 CONTACT
-              </a>
+              </Link>
             </div>
           </div>
           {/*Navigator-Fullscreen END*/}
 
           {/*Menubar*/}
           <div id='navigation-bar'>
-            <img src='images/logo.png' alt='logo' />
+            <a href={'/'} id='logo'>
+              <Image
+                width={100}
+                height={150}
+                src='/images/logo.png'
+                alt='logo'
+              />
+            </a>
             <div className='menubar'>
               <span className='first-span' />
               <span className='second-span' />

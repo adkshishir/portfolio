@@ -4,6 +4,7 @@ const page = () => {
   return (
     <>
       {/*blog*/}
+
       <div>
         <div className='blog-header'>
           {' '}
@@ -17,16 +18,44 @@ const page = () => {
           <div className='blogs'>
             <a href='#'>
               <div className='img'>
-                <img src='images/post-one.jpg' alt='blog-one' />
-                <div className='blog-date'>8 May,20</div>
+                <img src='images/blog-one.jpeg' alt='blog-one' />
+                <div className='blog-date'>8 May</div>
               </div>
               <div className='blog-text'>
-                <h3>Harleys In Hawaai</h3>
+                <h3>What is Full Stack ?</h3>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Possimus alias dolore recusandae illum, corrupti quo veniam
-                  saepe aliquid! Quis voluptates ratione consequuntur vel,
-                  perferendis cum provident? Magnam fugiat voluptas libero.
+                  In the world of web development and applications, front-end
+                  and back-end refer to the two sides of the coin that make
+                  everything work. Here's a breakdown of their definitions:{' '}
+                  <br />
+                  Front-end: This is the user interface (UI), the part you see
+                  and interact with. It's like the storefront of a physical
+                  store. Imagine a website – the buttons you click, menus you
+                  navigate, text you read, and images you see – that's all
+                  front-end. Front-end developers use languages like HTML, CSS,
+                  and JavaScript to build these interactive interfaces. <br />
+                  Back-end: This is the engine room, the part that runs behind
+                  the scenes. It's like the warehouse and stockroom of the
+                  store. The back-end handles data storage, processing, and
+                  server communication. When you click a button on the
+                  front-end, the back-end kicks in, retrieves information from a
+                  database (like checking stock in the warehouse), and delivers
+                  it back to the front-end to update what you see. Back-end
+                  developers use languages like Java, Python, or PHP to build
+                  and manage these functionalities. <br /> <br />
+                  for example : Imagine the human body as a website. The
+                  front-end, like our skin, hair, and eye color, is determined
+                  by HTML and CSS. These act like the building blocks and
+                  styling tools that create our visible appearance. Just like
+                  clicking a button, the actions we see externally, like
+                  clapping, are the front-end in action. But behind the scenes,
+                  the backend keeps things running. Just as our muscles and
+                  internal organs power our movements, the backend uses
+                  languages like JavaScript to handle complex processes. The
+                  backend is essentially the internal machinery, like the
+                  breathing system, that makes everything function. Both
+                  front-end and back-end work together to create a complete and
+                  functioning system.
                 </p>
               </div>
             </a>
@@ -35,50 +64,35 @@ const page = () => {
             <a href='#'>
               <div className='img'>
                 <img src='images/post-two.jpg' alt='blog-two' />
-                <div className='blog-date'>16 Jan,20</div>
+                <div className='blog-date'>10 may</div>
               </div>
               <div className='blog-text'>
-                <h3>Key To Be Productive</h3>
+                <h3>The Key to Productivity: It's Not What You Think</h3>
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Incidunt maiores, recusandae cupiditate ducimus a non tempora,
-                  architecto obcaecati eaque ipsum assumenda harum dolorum iusto
-                  tenetur eius eligendi dolor magnam sit!
+                  In today's fast-paced world, everyone wants to be productive.
+                  We're bombarded with tips and tricks promising to turn us into
+                  achievement machines. But the truth is, there's no
+                  one-size-fits-all solution. The key to productivity is
+                  actually a combination of factors, tailored to your unique
+                  personality and work style.
                 </p>
               </div>
             </a>
           </div>
-          <div className='blogs'>
-            <a href='#'>
-              <div className='img'>
-                <img src='images/post-three.jpg' alt='blog-three' />
-                <div className='blog-date'>30 Nov,19</div>
-              </div>
-              <div className='blog-text'>
-                <h3>Caffeine Addict</h3>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo
-                  nostrum impedit ipsam perspiciatis ratione sapiente quasi
-                  optio reprehenderit, labore consequuntur suscipit cum quas.
-                  Officiis dolorem asperiores, ut necessitatibus quas
-                  doloremque?
-                </p>
-              </div>
-            </a>
-          </div>
+   
           <div className='blogs'>
             <a href='#'>
               <div className='img'>
                 <img src='images/post-four.jpg' alt='blog-four' />
-                <div className='blog-date'>6 Jul,19</div>
+                <div className='blog-date'>20 jul</div>
               </div>
               <div className='blog-text'>
                 <h3>Web Development</h3>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorem, veniam ratione quam vitae, quibusdam explicabo rem
-                  debitis velit ipsa repellat, impedit nulla fuga? Amet corporis
-                  praesentium quae. Sed, quibusdam necessitatibus.
+                  Web development is the process of creating websites and web
+                  applications. It encompasses a wide range of activities, from
+                  designing the user interface (UI) and user experience (UX) to
+                  writing the code that makes the website function.
                 </p>
               </div>
             </a>
@@ -87,32 +101,16 @@ const page = () => {
             <a href='#'>
               <div className='img'>
                 <img src='images/post-five.jpg' alt='blog-five' />
-                <div className='blog-date'>1 Jun,19</div>
+                <div className='blog-date'>10 may</div>
               </div>
               <div className='blog-text'>
                 <h3>Work From Home</h3>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                  sunt eum necessitatibus rem dignissimos nulla mollitia cumque,
-                  provident officiis non vitae? Animi aut doloremque illum,
-                  soluta hic minus sint explicabo..
-                </p>
-              </div>
-            </a>
-          </div>
-          <div className='blogs'>
-            <a href='#'>
-              <div className='img'>
-                <img src='images/post-six.jpg' alt='blog-six' />
-                <div className='blog-date'>28 Feb,19</div>
-              </div>
-              <div className='blog-text'>
-                <h3>Business Trip</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Explicabo tempora dolorum fuga ratione, unde, ex quaerat iste
-                  numquam nemo nihil nobis rem sint quia recusandae dignissimos
-                  quos ut rerum nam.
+                  Work from home refers to work arrangements where employees
+                  perform their duties remotely, outside of a traditional office
+                  setting. This can be done from a dedicated home office, a
+                  co-working space, or even a coffee shop – as long as a stable
+                  internet connection is available.
                 </p>
               </div>
             </a>

@@ -8,6 +8,7 @@ const page = () => {
     'React Developer.',
     'Svelte Developer.',
     'PHP/Laravel Developer.',
+    'Node/Express Developer.',
   ];
   let textIndex = 0;
   let charIndex = 0;

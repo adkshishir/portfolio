@@ -15,8 +15,8 @@ const page = () => {
         <div className='contact-content'>
           {/*Contact form*/}
           <div className='contact-form'>
-            <div className='form-header'>Message Me</div>
             <form id='myForm' action='#'>
+            <div className='form-header'>Message Me</div>
               <div className='input-line'>
                 <input
                   id='name'
@@ -61,7 +61,7 @@ const page = () => {
                 />
                 <div className='contact-info-icon-text'>
                   <h6>Name</h6>
-                  <p>Arlo Brown</p>
+                  <p>Shishir Adhikari</p>
                 </div>
               </div>
               <div className='contect-info-content-line'>
@@ -72,7 +72,7 @@ const page = () => {
                 />
                 <div className='contact-info-icon-text'>
                   <h6>Location</h6>
-                  <p>New York, USA</p>
+                  <p>Pokhara</p>
                 </div>
               </div>
               <div className='contect-info-content-line'>
@@ -83,7 +83,7 @@ const page = () => {
                 />
                 <div className='contact-info-icon-text'>
                   <h6>Call</h6>
-                  <p>+9865376531</p>
+                  <p>+9806680725</p>
                 </div>
               </div>
               <div className='contect-info-content-line'>
@@ -94,7 +94,7 @@ const page = () => {
                 />
                 <div className='contact-info-icon-text'>
                   <h6>Email</h6>
-                  <p>Info@example.com</p>
+                  <p>adhikarishishir50@gmail.com</p>
                 </div>
               </div>
             </div>

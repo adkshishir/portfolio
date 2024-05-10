@@ -30,13 +30,13 @@ const page = () => {
               I have acquired the skills and knowledge necessary to make your
               project a success. I enjoy every step while working.
             </span>
-            <div className='cv'>
+            {/* <div className='cv'>
               <a href='#'>
                 <button>
                   Download <span className='colors'>CV</span>
                 </button>
               </a>
-            </div>
+            </div> */}
           </div>
           {/*about picture*/}
           <div className='about-img'>
@@ -49,13 +49,13 @@ const page = () => {
         </div>
       </div>
       {/*services header*/}
-      <div className='services-heading wow'>
+      {/* <div className='services-heading wow'>
         <span className='color'>My</span> Services
-      </div>
+      </div> */}
       {/*services header end*/}
       {/*  */}
       {/*services content*/}
-      <div className='services-content'>
+      {/* <div className='services-content'>
         <div className='service-one service wow'>
           <div className='service-img'>
             <img src='images/coding.png' alt='service-one' />
@@ -92,7 +92,7 @@ const page = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
       {/*services content end*/}
       {/* skills */}
       <div id='skills'>
@@ -110,7 +110,7 @@ const page = () => {
           </div>
           <div className='skill-html skill'>
             <div className='skill-text'>
-              <div className='html'>Javascript</div>
+              <div className='html'>Javascript/Typescript</div>
             </div>
             <div className='html-prog wow prog'>
               <div className='js-progress wow'>90%</div>
@@ -145,7 +145,7 @@ const page = () => {
               <div className='html'>SEO</div>
             </div>
             <div className='html-prog wow prog'>
-              <div className='seo-progress wow'>84%</div>
+              <div className='seo-progress wow'>54%</div>
             </div>
           </div>
         </div>
