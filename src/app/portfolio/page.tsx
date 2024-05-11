@@ -97,7 +97,7 @@ const page = () => {
                 this is my first client website . owner Mohan Subedi
               </p>
               <div className='button'>
-                <a href='#'>
+                <a href='https://hinepaltreks.com/' target='_blank'>
                   <button>
                     <span className='index'>
                       {' '}
