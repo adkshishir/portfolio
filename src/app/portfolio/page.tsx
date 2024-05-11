@@ -32,7 +32,7 @@ const page = () => {
             <div className='portfolio-text'>
               <h2>Sastotickets</h2>
               <p>
-                I have been working in sastotickets for 2 months. It is a
+                I have been working in sastotickets for 4-5 months. It is a
                 popular website for booking tickets. It is fully responsive.
                 {/* bug fixing  */}
                 <br />
