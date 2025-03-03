@@ -6,9 +6,10 @@ const page = () => {
   const [toggle, setToggle] = useState<boolean>(false);
   let textArray = [
     'React Developer.',
-    'Svelte Developer.',
-    'PHP/Laravel Developer.',
     'Node/Express Developer.',
+    'NestJS Developer.',
+    'MERN Stack Developer.',
+    'Full Stack Developer.',
   ];
   let textIndex = 0;
   let charIndex = 0;
