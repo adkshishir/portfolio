@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Particle from './components/Particle';
+import Particle from '../components/Particle';
 
 const page = () => {
   const [toggle, setToggle] = useState<boolean>(false);

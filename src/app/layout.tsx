@@ -18,7 +18,21 @@ export const metadata: Metadata = {
     'Adhikari Shishir',
     'adkshishir',
     'Best Full Stack Developer in Nepal',
+    '',
   ],
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     title: 'Shishir Adhikari',
     description: 'This website belongs to Shishir Adhikari',
