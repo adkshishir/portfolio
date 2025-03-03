@@ -3,8 +3,9 @@ import { Readable } from 'stream';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-
-  const baseUrl = process.env.NEXT_PUBLIC_FRONTEND_BASE_URL;
+  const baseUrl =
+    process.env.NEXT_PUBLIC_FRONTEND_BASE_URL ||
+    'https://adhikarishishir.com.np';
   let links: { url: string; changefreq: string; priority: number }[] = [];
   try {
     // Static URLs
