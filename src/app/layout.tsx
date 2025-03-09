@@ -62,12 +62,12 @@ export default async function RootLayout({
       'https://www.linkedin.com/in/shishir-adhikari-917432254',
       'https://github.com/adkshishir',
       'https://www.facebook.com/shishir0605',
-      'https://www.instagram.com/shishir0605',
+      'https://www.instagram.com/shishir0605'
     ],
     jobTitle: 'Full Stack Web Developer',
     worksFor: {
       '@type': 'Organization',
-      name: 'Aarambha IT RESEARCH PVT. LTD.',
+      name: 'Aarambha IT RESEARCH PVT. LTD.'
     },
   };
   return (
