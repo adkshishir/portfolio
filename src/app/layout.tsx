@@ -52,12 +52,42 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLdData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Shishir Adhikari',
+    url: 'https://adhikarishishir.com.np',
+    image: 'https://adhikarishishir.com.np/images/shishir.jpeg',
+    sameAs: [
+      'https://www.linkedin.com/in/shishir-adhikari-917432254',
+      'https://github.com/adkshishir',
+      'https://www.facebook.com/shishir0605',
+      'https://www.instagram.com/shishir0605',
+    ],
+    jobTitle: 'Full Stack Web Developer',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Aarambha IT RESEARCH PVT. LTD.',
+    },
+  };
   return (
     <html lang='en'>
       <head>
         <meta charSet='UTF-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-
+        <script
+          type='text/javascript'
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+         })(window, document, "clarity", "script", "qlgz3do11c");
+          `,
+          }}></script>
+        
+        <script type='application/ld+json'>{JSON.stringify(jsonLdData)}</script>
         <title>Shishir Adhikari</title>
         {/*main css file should not be removed */}
         <link rel='stylesheet' href='/css/index.css' />
