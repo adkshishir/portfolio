@@ -79,10 +79,10 @@ const page = () => {
         {/*Social Media Links end*/}
         <div className='header-content'>
           <div className='header-content-box'>
-            <div className='firstline'>
+            <div className=' firstline '>
               <span className='color'>Shishir</span>Adhikari
             </div>
-            <div className='secondline'>
+            <div className='secondline '>
               I'm a &nbsp;
               <span className='color'>{typingText}</span>
               <span className='slash'>|</span>

@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -52,24 +53,25 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLdData = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Shishir Adhikari',
-    url: 'https://adhikarishishir.com.np',
-    image: 'https://adhikarishishir.com.np/images/shishir.jpeg',
-    sameAs: [
-      'https://www.linkedin.com/in/shishir-adhikari-917432254',
-      'https://github.com/adkshishir',
-      'https://www.facebook.com/shishir0605',
-      'https://www.instagram.com/shishir0605'
-    ],
-    jobTitle: 'Full Stack Web Developer',
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Aarambha IT RESEARCH PVT. LTD.'
-    },
-  };
+  const jsonLdData = `{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Shishir Adhikari",
+  "url": "https://adhikarishishir.com.np",
+  "image": "https://adhikarishishir.com.np/images/shishir.jpeg",
+  "sameAs": [
+    "https://www.linkedin.com/in/shishir-adhikari-917432254",
+    "https://github.com/adkshishir",
+    "https://www.facebook.com/shishir0605",
+    "https://www.instagram.com/shishir0605"
+  ],
+  "jobTitle": "Full Stack Web Developer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Aarambha IT RESEARCH PVT. LTD."
+  }
+}
+`;
   return (
     <html lang='en'>
       <head>
@@ -86,8 +88,11 @@ export default async function RootLayout({
          })(window, document, "clarity", "script", "qlgz3do11c");
           `,
           }}></script>
-        
-        <script type='application/ld+json'>{JSON.stringify(jsonLdData)}</script>
+
+        <Script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: jsonLdData }}
+        />
         <title>Shishir Adhikari</title>
         {/*main css file should not be removed */}
         <link rel='stylesheet' href='/css/index.css' />
@@ -155,12 +160,12 @@ export default async function RootLayout({
               <span className='third-span' />
             </div>
           </div>
-          {/*Menubar End*/}
+          
           <main>{children}</main>
           {
             <>
-              <script src='/js/jquery.min.js'></script>
-              <script src='/js/index.js'></script>
+              <script  src='/js/jquery.min.js'></script>
+              <script  src='/js/index.js'></script>
             </>
           }
         </div>
