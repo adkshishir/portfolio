@@ -22,6 +22,6 @@ jobs:
           script: |
             cd /home/ubuntu/projects/portfolio
             git pull origin main  # Pull latest changes
-            npm install  # Install dependencies (if needed)
+            npm install --legacy-peer-deps  # Install dependencies (if needed)
             npm run build  # Build project (if applicable)
             pm2 restart portfolio  # Restart the app if using PM2
