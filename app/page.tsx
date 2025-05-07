@@ -70,9 +70,9 @@ export default function Home() {
   };
 
   return (
-    <div className='relative min-h-screen bg-black text-white overflow-hidden'>
+    <div className='relative min-h-screen bg-transparent text-white overflow-hidden'>
       {/* Network Animation Background */}
-      <div className='fixed inset-0 z-0'>
+      <div className='fixed inset-0 -z-10 bg-black'>
         <NetworkAnimation />
       </div>
 
