@@ -20,6 +20,7 @@ import NetworkAnimation from '@/components/network-animation';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { portfolioData } from '@/data/portfolio-data';
+import ContactForm from '@/components/contact-form';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,7 +59,7 @@ export default function Home() {
   }, []);
 
   const downloadCV = () => {
-    fetch('/cv.pdf').then((response) => {
+    fetch('/cv-shishir.pdf').then((response) => {
       response.blob().then((blob) => {
         const fileURL = window.URL.createObjectURL(blob);
         let alink = document.createElement('a');
@@ -616,9 +617,9 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className='font-medium'>Email</h4>
-                      <p className='text-gray-300'>
+                      <a href={`mailto:${portfolioData.personal.contact.email}`} className='text-gray-300'>
                         {portfolioData.personal.contact.email}
-                      </p>
+                      </a>
                     </div>
                   </div>
 
@@ -628,9 +629,9 @@ export default function Home() {
                     </div>
                     <div>
                       <h4 className='font-medium'>Phone</h4>
-                      <p className='text-gray-300'>
+                      <a href={`tel:${portfolioData.personal.contact.phone}`} className='text-gray-300'>
                         {portfolioData.personal.contact.phone}
-                      </p>
+                      </a>
                     </div>
                   </div>
 
@@ -647,48 +648,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              <div>
-                <form className='space-y-6'>
-                  <div className='grid md:grid-cols-2 gap-6'>
-                    <div>
-                      <input
-                        type='text'
-                        placeholder='Your Name'
-                        className='w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-red-500'
-                      />
-                    </div>
-                    <div>
-                      <input
-                        type='email'
-                        placeholder='Your Email'
-                        className='w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-red-500'
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <input
-                      type='text'
-                      placeholder='Subject'
-                      className='w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-red-500'
-                    />
-                  </div>
-
-                  <div>
-                    <textarea
-                      placeholder='Your Message'
-                      rows={6}
-                      className='w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:border-red-500'></textarea>
-                  </div>
-
-                  <Button
-                    type='submit'
-                    className='bg-red-500 hover:bg-red-600 text-white border-none px-8 py-3'>
-                    Send Message
-                  </Button>
-                </form>
-              </div>
+              <ContactForm/>
             </div>
           </div>
         </section>
