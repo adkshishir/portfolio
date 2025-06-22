@@ -46,8 +46,6 @@ export default function ContactForm() {
     }
   }
 
-  console.log(isSubmitting);
-
   return (
     <form id='contact-form' className='space-y-6'>
       <div className='grid md:grid-cols-2 gap-6'>
