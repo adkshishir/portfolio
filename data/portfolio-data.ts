@@ -1,14 +1,25 @@
 export const portfolioData = {
   personal: {
     name: 'Shishir Adhikari',
-    title: 'Software Developer',
+    title: 'Full Stack Developer',
+    tagline: 'Building Scalable Web Applications with Modern Technologies',
     profileSummary:
-      'I am a passionate and detail-oriented full-stack developer with hands-on experience in building scalable and secure web applications using technologies like NestJS, Django, React, and Prisma. I enjoy solving real-world problems through clean code, efficient architecture, and continuous learning.',
+      'I am a passionate and detail-oriented full-stack developer with hands-on experience in building scalable and secure web applications using technologies like NestJS, Django, React, and Prisma. I enjoy solving real-world problems through clean code, efficient architecture, and continuous learning. Based in Pokhara, Nepal with 3+ years of professional experience.',
     contact: {
       phone: '+977 9806680725',
       email: 'adhikarishishir50@gmail.com',
-      location: 'Nepal Pokhara',
+      location: 'Pokhara, Nepal',
       website: 'www.adhikarishishir.com.np',
+    },
+    seo: {
+      keywords: [
+        'Full Stack Developer Nepal',
+        'React Developer Pokhara',
+        'Next.js Developer',
+        'Node.js Expert',
+        'Web Developer Nepal',
+        'Freelance Developer Nepal',
+      ],
     },
   },
   education: [
@@ -73,27 +84,31 @@ export const portfolioData = {
     {
       title: 'Poon Hill Treks',
       description:
-        'A responsive travel information site focused on the famous Poonhill trek with interactive maps and trek itinerary planning features.',
+        'A responsive travel information site built with modern web technologies, focused on the famous Poonhill trek in Nepal. Features interactive maps, trek itinerary planning, and SEO-optimized content for travel enthusiasts.',
       link: 'https://poonhill.adhikarishishir.com.np',
+      technologies: ['Next.js', 'React', 'Tailwind CSS'],
     },
 
     {
       title: 'Med Tracker',
       description:
-        'Developed a backend system for tracking medication schedules and patient compliance with secure API endpoints.',
+        'Full-stack healthcare application with a robust backend system for tracking medication schedules and patient compliance. Built with secure REST API endpoints and comprehensive data management.',
       link: 'https://github.com/the-null-pointers/medtracker-backend',
+      technologies: ['Node.js', 'NestJS', 'PostgreSQL', 'REST API'],
     },
     {
       title: 'Local Talent',
       description:
-        'Developed a full-stack web application for local talent marketplace with secure API endpoints and user authentication.',
+        'Full-stack web application for a local talent marketplace connecting skilled professionals with clients. Features secure user authentication, profile management, and real-time messaging.',
       link: 'https://github.com/adkshishir/localtalent-frontend',
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
     },
     {
       title: 'E-commerce Backend',
       description:
-        'Developed a backend system for ecommerce business for college project with secure API endpoints and e-sewa payment gateway integration.',
+        'Scalable e-commerce backend system with secure API endpoints, eSewa payment gateway integration, inventory management, and order processing capabilities. Built for performance and security.',
       link: 'https://github.com/adkshishir/ecommerce-backend-node',
+      technologies: ['Node.js', 'Express', 'MySQL', 'eSewa API'],
     },
   ],
   socialLinks: {
