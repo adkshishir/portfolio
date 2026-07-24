@@ -1,61 +1,54 @@
 import type React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
+import { portfolioData, siteUrl } from '@/data/portfolio-data';
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+});
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_FRONTEND_BASE_URL || 'https://adhikarishishir.com.np';
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-serif',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
+
+const { personal, socialLinks, projects, knowsAbout, experience, education } =
+  portfolioData;
+
+const seoTitle = personal.seo.title;
+const seoDescription = personal.seo.description;
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: light)', color: '#0f1115' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f1115' },
   ],
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default:
-      'Shishir Adhikari | Full Stack Developer | React, Next.js, Node.js Expert',
-    template: '%s | Shishir Adhikari - Software Developer',
+    default: seoTitle,
+    template: '%s | Shishir Adhikari',
   },
-  description:
-    'Shishir Adhikari is a passionate Full Stack Developer from Pokhara, Nepal with 3+ years of experience in React, Next.js, NestJS, Node.js, TypeScript, and modern web technologies. Hire me for your next web development project.',
-  keywords: [
-    'Shishir Adhikari',
-    'Full Stack Developer',
-    'Software Developer Nepal',
-    'Web Developer Pokhara',
-    'React Developer',
-    'Next.js Developer',
-    'Node.js Developer',
-    'NestJS Developer',
-    'TypeScript Developer',
-    'JavaScript Developer',
-    'Frontend Developer Nepal',
-    'Backend Developer Nepal',
-    'Freelance Web Developer Nepal',
-    'Portfolio Website',
-    'Hire Web Developer',
-    'Nepal Software Engineer',
-    'Pokhara Developer',
-    'MERN Stack Developer',
-    'Svelte Developer',
-    'Tailwind CSS Developer',
-    'REST API Developer',
-    'MySQL Developer',
-    'PostgreSQL Developer',
-  ],
-  authors: [{ name: 'Shishir Adhikari', url: siteUrl }],
-  creator: 'Shishir Adhikari',
-  publisher: 'Shishir Adhikari',
+  description: seoDescription,
+  keywords: [...personal.seo.keywords],
+  authors: [{ name: personal.name, url: siteUrl }],
+  creator: personal.name,
+  publisher: personal.name,
   formatDetection: {
     email: true,
     address: true,
@@ -68,26 +61,23 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: siteUrl,
-    siteName: 'Shishir Adhikari Portfolio',
-    title:
-      'Shishir Adhikari | Full Stack Developer | React, Next.js, Node.js Expert',
-    description:
-      'Passionate Full Stack Developer from Nepal with expertise in React, Next.js, NestJS, and modern web technologies. View my portfolio, projects, and experience.',
+    siteName: `${personal.name} Portfolio`,
+    title: seoTitle,
+    description: seoDescription,
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Shishir Adhikari - Full Stack Developer Portfolio',
+        alt: `${personal.name} — ${personal.title}`,
         type: 'image/jpeg',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shishir Adhikari | Full Stack Developer',
-    description:
-      'Full Stack Developer from Nepal specializing in React, Next.js, NestJS, and modern web technologies. 3+ years of experience building scalable web applications.',
+    title: `${personal.name} | ${personal.title}`,
+    description: seoDescription,
     images: ['/images/og-image.jpg'],
     creator: '@shishir0605',
   },
@@ -104,72 +94,88 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code', // Replace with your actual Google Search Console verification code
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
+  manifest: '/manifest.json',
   category: 'technology',
   classification: 'Portfolio Website',
 };
 
-// JSON-LD Structured Data for Person and WebSite
+const currentEmployer = experience.find((job) => job.current) ?? experience[0];
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Person',
       '@id': `${siteUrl}/#person`,
-      name: 'Shishir Adhikari',
-      givenName: 'Shishir',
-      familyName: 'Adhikari',
+      name: personal.name,
+      givenName: personal.givenName,
+      familyName: personal.familyName,
       url: siteUrl,
       image: `${siteUrl}/images/shishir.jpeg`,
       sameAs: [
-        'https://github.com/adkshishir',
-        'https://www.linkedin.com/in/shishir-adhikari-917432254/',
-        'https://www.instagram.com/shishir0605/',
-        'https://www.facebook.com/shishir0605',
+        socialLinks.github,
+        socialLinks.linkedin,
+        socialLinks.instagram,
+        socialLinks.facebook,
       ],
-      jobTitle: 'Full Stack Developer',
+      jobTitle: personal.title,
       worksFor: {
-        '@type': 'Organization',
-        name: 'Aarambha',
+        '@id': `${siteUrl}/#employer`,
       },
-      description:
-        'Passionate Full Stack Developer with expertise in React, Next.js, NestJS, Node.js, and modern web technologies.',
-      email: 'adhikarishishir50@gmail.com',
-      telephone: '+977 9806680725',
+      description: seoDescription,
+      email: personal.contact.email,
+      telephone: personal.contact.phoneDisplay,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Pokhara',
-        addressCountry: 'Nepal',
+        addressCountry: 'NP',
       },
-      alumniOf: {
+      alumniOf: education.map((edu) => ({
         '@type': 'CollegeOrUniversity',
-        name: 'Prithivi Narayan Campus',
+        name: edu.institution,
+      })),
+      knowsAbout: [...knowsAbout],
+      hasOccupation: {
+        '@type': 'Occupation',
+        name: personal.title,
+        occupationLocation: {
+          '@type': 'City',
+          name: 'Pokhara',
+          addressCountry: 'NP',
+        },
+        skills: knowsAbout.join(', '),
       },
-      knowsAbout: [
-        'JavaScript',
-        'TypeScript',
-        'React',
-        'Next.js',
-        'Node.js',
-        'NestJS',
-        'Svelte',
-        'Tailwind CSS',
-        'MySQL',
-        'PostgreSQL',
-        'REST API',
-        'Full Stack Development',
-        'Web Development',
-      ],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'professional',
+        email: personal.contact.email,
+        telephone: personal.contact.phoneDisplay,
+        availableLanguage: ['English', 'Nepali', 'Hindi'],
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#employer`,
+      name: currentEmployer.company,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Pokhara',
+        addressCountry: 'NP',
+      },
     },
     {
       '@type': 'WebSite',
       '@id': `${siteUrl}/#website`,
       url: siteUrl,
-      name: 'Shishir Adhikari Portfolio',
-      description:
-        'Portfolio website of Shishir Adhikari, Full Stack Developer from Nepal',
+      name: `${personal.name} Portfolio`,
+      description: seoDescription,
       publisher: {
         '@id': `${siteUrl}/#person`,
       },
@@ -179,16 +185,22 @@ const jsonLd = {
       '@type': 'WebPage',
       '@id': `${siteUrl}/#webpage`,
       url: siteUrl,
-      name: 'Shishir Adhikari | Full Stack Developer Portfolio',
+      name: seoTitle,
       isPartOf: {
         '@id': `${siteUrl}/#website`,
       },
       about: {
         '@id': `${siteUrl}/#person`,
       },
-      description:
-        'Portfolio of Shishir Adhikari showcasing skills, experience, and projects in full stack web development.',
+      description: seoDescription,
       inLanguage: 'en-US',
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/images/og-image.jpg`,
+      },
+      breadcrumb: {
+        '@id': `${siteUrl}/#breadcrumb`,
+      },
       potentialAction: [
         {
           '@type': 'ReadAction',
@@ -197,55 +209,50 @@ const jsonLd = {
       ],
     },
     {
-      '@type': 'ItemList',
-      '@id': `${siteUrl}/#projects`,
-      name: 'Projects by Shishir Adhikari',
+      '@type': 'BreadcrumbList',
+      '@id': `${siteUrl}/#breadcrumb`,
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
-          item: {
-            '@type': 'CreativeWork',
-            name: 'Poon Hill Treks',
-            description:
-              'A responsive travel information site focused on the famous Poonhill trek with interactive maps and trek itinerary planning features.',
-            url: 'https://poonhill.adhikarishishir.com.np',
-          },
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          item: {
-            '@type': 'SoftwareSourceCode',
-            name: 'Med Tracker',
-            description:
-              'Backend system for tracking medication schedules and patient compliance with secure API endpoints.',
-            url: 'https://github.com/the-null-pointers/medtracker-backend',
-          },
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          item: {
-            '@type': 'SoftwareSourceCode',
-            name: 'Local Talent',
-            description:
-              'Full-stack web application for local talent marketplace with secure API endpoints and user authentication.',
-            url: 'https://github.com/adkshishir/localtalent-frontend',
-          },
-        },
-        {
-          '@type': 'ListItem',
-          position: 4,
-          item: {
-            '@type': 'SoftwareSourceCode',
-            name: 'E-commerce Backend',
-            description:
-              'Backend system for ecommerce business with secure API endpoints and e-sewa payment gateway integration.',
-            url: 'https://github.com/adkshishir/ecommerce-backend-node',
-          },
+          name: 'Home',
+          item: siteUrl,
         },
       ],
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${siteUrl}/#projects`,
+      name: `Projects by ${personal.name}`,
+      numberOfItems: projects.length,
+      itemListElement: projects.map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': project.schemaType,
+          name: project.title,
+          description: project.description,
+          url: project.link,
+          author: {
+            '@id': `${siteUrl}/#person`,
+          },
+        },
+      })),
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${siteUrl}/#service`,
+      name: `${personal.name} — Full Stack Development`,
+      url: siteUrl,
+      provider: {
+        '@id': `${siteUrl}/#person`,
+      },
+      areaServed: {
+        '@type': 'Country',
+        name: 'Nepal',
+      },
+      serviceType: 'Full Stack Web Development',
+      description: seoDescription,
     },
   ],
 };
@@ -256,20 +263,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='scroll-smooth'>
-      <head>
-        <link rel='canonical' href={siteUrl} />
-        <link rel='icon' href='/favicon.ico' sizes='any' />
-        <link rel='icon' href='/icon.svg' type='image/svg+xml' />
-        <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
-        <link rel='manifest' href='/manifest.json' />
+    <html
+      lang='en'
+      className={`scroll-smooth ${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}>
+      <body className='font-sans antialiased'>
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className={inter.className}>
-        <Toaster />
         {children}
       </body>
     </html>

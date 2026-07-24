@@ -1,47 +1,19 @@
 import type { MetadataRoute } from 'next';
+import { siteUrl } from '@/data/portfolio-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_FRONTEND_BASE_URL ||
-    'https://adhikarishishir.com.np';
-  const currentDate = new Date();
-
   return [
     {
-      url: baseUrl,
-      lastModified: currentDate,
+      url: siteUrl,
+      lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/#about`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#skills`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#experience`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#projects`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/#contact`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
+      url: `${siteUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ];
 }

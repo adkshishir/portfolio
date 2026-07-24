@@ -1,16 +1,13 @@
 import type { MetadataRoute } from 'next';
+import { siteUrl } from '@/data/portfolio-data';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_FRONTEND_BASE_URL ||
-    'https://adhikarishishir.com.np';
-
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/static/'],
+        disallow: ['/api/', '/_next/'],
       },
       {
         userAgent: 'Googlebot',
@@ -21,7 +18,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   };
 }
