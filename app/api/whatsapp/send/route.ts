@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import {
   normalizeWhatsAppNumber,
-  sendWelcomeWithOptions,
+  sendContactTemplate,
 } from '@/lib/whatsapp';
 
 export const runtime = 'nodejs';
@@ -69,18 +69,21 @@ export async function POST(request: Request) {
         {
           success: false,
           error:
-            'Enter a valid WhatsApp number with country code (e.g. 9779748769180).',
+            'Enter a valid WhatsApp number including the country code (e.g. 9779748769180).',
         },
         { status: 400 },
       );
     }
 
-    await sendWelcomeWithOptions({ to, name, message });
+    // Business-initiated: must be an approved template, not a free-form
+    // text/interactive message. The interactive options menu is sent by the
+    // webhook once they reply, which opens the 24h customer service window.
+    await sendContactTemplate({ to, name, message });
 
     return NextResponse.json({
       success: true,
       message:
-        'Sent! Check WhatsApp for my automated reply with options — we can continue the conversation there.',
+        'Sent! Check WhatsApp for my reply — reply there and I\'ll follow up personally.',
     });
   } catch (error) {
     console.error('WhatsApp send error:', error);
@@ -88,16 +91,32 @@ export async function POST(request: Request) {
     const code = (error as { code?: number })?.code;
     const detail = error instanceof Error ? error.message : 'Failed to send';
 
-    // Common Meta error when messaging someone who hasn't opted in / 24h window
-    if (code === 131047 || /template|24.?hour|not a valid/i.test(detail)) {
+    // Template missing / not approved / wrong language / wrong param count.
+    if (code === 132000 || code === 132001 || code === 132005 || code === 132007) {
+      console.error(
+        'WhatsApp template rejected — check WHATSAPP_TEMPLATE_NAME/LANG and that the template is APPROVED with exactly 2 body params.',
+      );
       return NextResponse.json(
         {
           success: false,
           error:
-            'WhatsApp could not deliver yet. The recipient may need to message your business number first, or you may need an approved message template for business-initiated chats. Check Meta Business WhatsApp settings.',
+            'Message service is misconfigured right now. Please email me instead and I\'ll reply personally.',
           code,
         },
         { status: 502 },
+      );
+    }
+
+    // Recipient is not on WhatsApp, or the number is not reachable.
+    if (code === 131026 || code === 131030 || /not a valid|not exist/i.test(detail)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            'That number does not appear to be on WhatsApp. Double-check the country code and try again.',
+          code,
+        },
+        { status: 400 },
       );
     }
 

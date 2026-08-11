@@ -77,8 +77,8 @@ export function Contact() {
               Let&apos;s build something.
             </h2>
             <p className='mx-auto mb-8 max-w-[440px] text-[var(--dim)]'>
-              Send a message below — you&apos;ll get an automated WhatsApp reply
-              with options, then we continue the chat there.
+              Send a message below — I&apos;ll message you on WhatsApp. Reply
+              there and we continue the chat.
             </p>
           </div>
 
@@ -125,7 +125,7 @@ export function Contact() {
                 placeholder='9779748769180'
               />
               <p className='mt-1.5 font-mono text-[11px] text-[var(--dim)]'>
-                Digits only preferred. Example for Nepal: 97798XXXXXXXX
+                Country code is required. Example for Nepal: +97798XXXXXXXX
               </p>
             </div>
 

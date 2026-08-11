@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import {
   extractIncomingMessages,
+  extractStatuses,
   getSelectedOptionId,
   getWhatsAppConfig,
   replyForOption,
@@ -35,6 +36,18 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
+
+    // Delivery failures arrive here, not as a send-time error.
+    for (const status of extractStatuses(body)) {
+      if (status.status === 'failed') {
+        console.error('WhatsApp delivery failed:', {
+          to: status.recipient_id,
+          messageId: status.id,
+          errors: status.errors,
+        });
+      }
+    }
+
     const messages = extractIncomingMessages(body);
 
     for (const msg of messages) {

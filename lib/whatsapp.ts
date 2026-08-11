@@ -6,6 +6,9 @@ export function getWhatsAppConfig() {
   const verifyToken = process.env.WHATSAPP_TOKEN;
   const businessNumber = process.env.WHATSAPP_NUMBER;
   const businessName = process.env.WHATSAPP_NAME || 'Shishir Adhikari';
+  const templateName = process.env.WHATSAPP_TEMPLATE_NAME;
+  const templateLang = process.env.WHATSAPP_TEMPLATE_LANG || 'en';
+  const defaultCountryCode = process.env.WHATSAPP_DEFAULT_COUNTRY_CODE;
 
   if (!phoneNumberId || !accessToken) {
     throw new Error('WhatsApp is not configured (missing PHONE_NUMBER_ID or ACCESS_TOKEN)');
@@ -17,13 +20,45 @@ export function getWhatsAppConfig() {
     verifyToken,
     businessNumber,
     businessName,
+    templateName,
+    templateLang,
+    defaultCountryCode,
   };
 }
 
-/** Normalize to digits only with country code (no +). */
+/**
+ * Normalize to digits only with country code (no +).
+ *
+ * A bare national number (e.g. "9748769180") is not routable — Meta may accept
+ * the send and then fail delivery asynchronously, which looks like "no reply".
+ * If the input is not already in international form we prepend
+ * WHATSAPP_DEFAULT_COUNTRY_CODE when configured, otherwise we reject it so the
+ * form can tell the user what is wrong.
+ */
 export function normalizeWhatsAppNumber(input: string): string | null {
-  const digits = input.replace(/\D/g, '');
-  if (digits.length < 10 || digits.length > 15) return null;
+  const trimmed = input.trim();
+  const isInternational = trimmed.startsWith('+') || trimmed.startsWith('00');
+
+  let digits = trimmed.replace(/\D/g, '');
+  if (trimmed.startsWith('00')) digits = digits.slice(2);
+
+  if (!isInternational) {
+    const cc = (process.env.WHATSAPP_DEFAULT_COUNTRY_CODE || '').replace(/\D/g, '');
+
+    // Local formats commonly start with a trunk "0" that must be dropped.
+    const national = digits.replace(/^0+/, '');
+
+    if (cc && !digits.startsWith(cc)) {
+      digits = cc + national;
+    } else if (!cc && national.length <= 10) {
+      // Looks like a national number with no country code and no default set.
+      return null;
+    } else {
+      digits = national;
+    }
+  }
+
+  if (digits.length < 11 || digits.length > 15) return null;
   return digits;
 }
 
@@ -102,6 +137,58 @@ export async function sendWelcomeWithOptions(params: {
   });
 }
 
+/**
+ * Business-initiated sends (the website contact form) MUST use an approved
+ * template. Text and interactive messages are free-form and are only delivered
+ * inside the 24-hour customer service window, which opens only when the
+ * customer messages us first — that is why the webhook path works and the
+ * website path does not.
+ *
+ * Expected template (create + get approved in Meta Business Manager):
+ *   name:     WHATSAPP_TEMPLATE_NAME  e.g. portfolio_contact
+ *   language: WHATSAPP_TEMPLATE_LANG  e.g. en
+ *   body:     Hi {{1}}, thanks for reaching out from my portfolio.
+ *             I received your message: "{{2}}". Reply here and I'll get back
+ *             to you personally.
+ */
+export async function sendContactTemplate(params: {
+  to: string;
+  name: string;
+  message: string;
+}) {
+  const { templateName, templateLang } = getWhatsAppConfig();
+
+  if (!templateName) {
+    const err = new Error(
+      'No WhatsApp template configured (WHATSAPP_TEMPLATE_NAME). Business-initiated messages require an approved template.',
+    ) as Error & { code?: number };
+    err.code = 132001;
+    throw err;
+  }
+
+  // Template params cannot contain newlines or tabs, and must be non-empty.
+  const clean = (v: string, max: number) =>
+    v.replace(/\s+/g, ' ').trim().slice(0, max) || '-';
+
+  return sendWhatsAppMessage({
+    to: params.to,
+    type: 'template',
+    template: {
+      name: templateName,
+      language: { code: templateLang },
+      components: [
+        {
+          type: 'body',
+          parameters: [
+            { type: 'text', text: clean(params.name, 60) },
+            { type: 'text', text: clean(params.message, 600) },
+          ],
+        },
+      ],
+    },
+  });
+}
+
 export async function sendTextMessage(to: string, body: string) {
   return sendWhatsAppMessage({
     to,
@@ -157,6 +244,36 @@ export function extractIncomingMessages(body: unknown): IncomingWhatsAppMessage[
   }
 
   return messages;
+}
+
+export type WhatsAppStatus = {
+  id?: string;
+  status?: string;
+  recipient_id?: string;
+  errors?: Array<{ code?: number; title?: string; message?: string }>;
+};
+
+/**
+ * Meta reports undelivered sends asynchronously as `statuses` (not `messages`).
+ * Without this, a send that Meta accepts but never delivers is silent.
+ */
+export function extractStatuses(body: unknown): WhatsAppStatus[] {
+  const statuses: WhatsAppStatus[] = [];
+  const root = body as {
+    entry?: Array<{
+      changes?: Array<{ value?: { statuses?: WhatsAppStatus[] } }>;
+    }>;
+  };
+
+  for (const entry of root.entry ?? []) {
+    for (const change of entry.changes ?? []) {
+      for (const status of change.value?.statuses ?? []) {
+        statuses.push(status);
+      }
+    }
+  }
+
+  return statuses;
 }
 
 export function getSelectedOptionId(msg: IncomingWhatsAppMessage): string | null {
