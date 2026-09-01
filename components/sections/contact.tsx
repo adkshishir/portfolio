@@ -3,7 +3,11 @@
 import { useState, type FormEvent } from 'react';
 import { portfolioData } from '@/data/portfolio-data';
 
-type Status = { type: 'idle' } | { type: 'error'; message: string };
+type Status =
+  | { type: 'idle' }
+  | { type: 'loading' }
+  | { type: 'success'; message: string }
+  | { type: 'error'; message: string };
 
 export function Contact() {
   const { personal, socialLinks } = portfolioData;
@@ -12,33 +16,43 @@ export function Contact() {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<Status>({ type: 'idle' });
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    setStatus({ type: 'loading' });
 
-    const trimmedName = name.trim();
-    const trimmedMessage = message.trim();
+    try {
+      const res = await fetch('/api/contact/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = (await res.json()) as {
+        success?: boolean;
+        message?: string;
+        error?: string;
+      };
 
-    if (!trimmedName || !trimmedMessage) {
+      if (!res.ok || !data.success) {
+        setStatus({
+          type: 'error',
+          message: data.error || 'Something went wrong. Please try again.',
+        });
+        return;
+      }
+
+      setStatus({
+        type: 'success',
+        message: data.message || "Sent! I'll reply to your email soon.",
+      });
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch {
       setStatus({
         type: 'error',
-        message: 'Please fill in your name and a message.',
+        message: 'Network error. Please try again or message me on WhatsApp instead.',
       });
-      return;
     }
-
-    const text = [
-      `Hi, I'm ${trimmedName}.`,
-      email.trim() ? `Email: ${email.trim()}` : null,
-      '',
-      trimmedMessage,
-    ]
-      .filter((line) => line !== null)
-      .join('\n');
-
-    const phoneDigits = personal.contact.phone.replace(/\D/g, '');
-    const waUrl = `https://wa.me/${phoneDigits}?text=${encodeURIComponent(text)}`;
-
-    window.location.href = waUrl;
   }
 
   return (
@@ -61,8 +75,7 @@ export function Contact() {
               Let&apos;s build something.
             </h2>
             <p className='mx-auto mb-8 max-w-[440px] text-[var(--dim)]'>
-              Send a message below — it&apos;ll open WhatsApp with your
-              message ready to go.
+              Send a message below and I&apos;ll reply to your email.
             </p>
           </div>
 
@@ -95,13 +108,14 @@ export function Contact() {
               <label
                 htmlFor='wa-email'
                 className='mb-1.5 block font-mono text-[12px] text-[var(--dim)]'>
-                Your email (optional)
+                Your email
               </label>
               <input
                 id='wa-email'
                 name='email'
                 type='email'
                 autoComplete='email'
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className='w-full rounded-md border border-[var(--line)] bg-[var(--bg)] px-3.5 py-3 font-sans text-sm text-[var(--text)] outline-none transition-colors placeholder:text-[var(--dim)] focus:border-[var(--crimson)]'
@@ -131,10 +145,18 @@ export function Contact() {
 
             <button
               type='submit'
-              className='btn btn-primary w-full justify-center'>
-              Message on WhatsApp →
+              disabled={status.type === 'loading'}
+              className='btn btn-primary w-full justify-center disabled:cursor-not-allowed disabled:opacity-70'>
+              {status.type === 'loading' ? 'Sending…' : 'Send Message →'}
             </button>
 
+            {status.type === 'success' && (
+              <p
+                role='status'
+                className='rounded-md border border-[var(--crimson)] bg-[var(--crimson-soft)] px-3.5 py-3 font-mono text-[12.5px] text-[var(--crimson)]'>
+                {status.message}
+              </p>
+            )}
             {status.type === 'error' && (
               <p
                 role='alert'
@@ -146,9 +168,11 @@ export function Contact() {
 
           <div className='relative flex flex-wrap justify-center gap-3.5'>
             <a
-              href={`mailto:${personal.contact.email}`}
+              href={`https://wa.me/${personal.contact.phone.replace(/\D/g, '')}`}
+              target='_blank'
+              rel='noopener noreferrer'
               className='btn btn-ghost'>
-              Email Me →
+              WhatsApp Me →
             </a>
             <a
               href={personal.contact.cvPath}
