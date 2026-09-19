@@ -298,15 +298,6 @@ export const portfolioData = {
       schemaType: 'WebApplication' as const,
     },
     {
-      title: 'Dynamic Form Builder',
-      tag: 'no-code',
-      category: 'personal' as const,
-      description:
-        'No-code, drag-and-drop builder for creating and publishing dynamic forms for data collection.',
-      link: 'https://dynamicformbuilder.com',
-      schemaType: 'WebApplication' as const,
-    },
-    {
       title: 'PDF Into Word',
       tag: 'tool',
       category: 'personal' as const,
