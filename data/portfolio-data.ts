@@ -315,6 +315,15 @@ export const portfolioData = {
       link: 'https://pdfintoword.com/',
       schemaType: 'WebApplication' as const,
     },
+    {
+      title: 'Excel Into PDF',
+      tag: 'tool',
+      category: 'personal' as const,
+      description:
+        'Web tool that converts Excel spreadsheets into clean, shareable PDF documents in seconds.',
+      link: 'https://excelintopdf.com/',
+      schemaType: 'WebApplication' as const,
+    },
   ],
   socialLinks: {
     github: 'https://github.com/adkshishir',
