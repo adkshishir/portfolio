@@ -82,6 +82,8 @@ export const portfolioData = {
   ],
   skillChips: [
     'Prisma',
+    'FastAPI',
+    'Alembic',
     'Git & GitHub',
     'GitHub Actions',
     'Stripe',
@@ -107,6 +109,8 @@ export const portfolioData = {
     'MySQL',
     'MongoDB',
     'Prisma',
+    'FastAPI',
+    'Alembic',
     'REST API',
     'Docker',
     'Full Stack Development',
@@ -265,6 +269,51 @@ export const portfolioData = {
         'Role-based patient, session and treatment management system built with NestJS and Prisma.',
       link: 'https://github.com/the-null-pointers/medtracker-backend',
       schemaType: 'SoftwareSourceCode' as const,
+    },
+    {
+      title: 'InfoChats',
+      tag: 'omnichannel inbox',
+      category: 'company' as const,
+      description:
+        'Omnichannel messaging platform that pulls in messages from multiple platforms into a single inbox, helping businesses manage conversations and sell their products.',
+      link: 'https://infochats.infocarenepal.com/',
+      schemaType: 'WebApplication' as const,
+    },
+    {
+      title: 'LetterRaid',
+      tag: 'game',
+      category: 'personal' as const,
+      description:
+        '1v1 real-time word battle game in the spirit of Clash Royale, where players raid words out of a shared set of letters to outscore their opponent.',
+      link: 'https://letterraid.adhikarishishir.com.np/',
+      schemaType: 'WebApplication' as const,
+    },
+    {
+      title: 'WealthAlgor',
+      tag: 'fintech',
+      category: 'personal' as const,
+      description:
+        'Platform for building, testing, and tracking algorithmic wealth-management and trading strategies.',
+      link: 'https://wealthalgor.com/',
+      schemaType: 'WebApplication' as const,
+    },
+    {
+      title: 'Dynamic Form Builder',
+      tag: 'no-code',
+      category: 'personal' as const,
+      description:
+        'No-code, drag-and-drop builder for creating and publishing dynamic forms for data collection.',
+      link: 'https://dynamicformbuilder.com',
+      schemaType: 'WebApplication' as const,
+    },
+    {
+      title: 'PDF Into Word',
+      tag: 'tool',
+      category: 'personal' as const,
+      description:
+        'Web tool that converts PDF documents into clean, editable Word files in seconds.',
+      link: 'https://pdfintoword.com/',
+      schemaType: 'WebApplication' as const,
     },
   ],
   socialLinks: {
