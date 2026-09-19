@@ -6,7 +6,7 @@ import { portfolioData, siteUrl } from '@/data/portfolio-data';
 
 const title = 'Privacy Policy';
 const description =
-  'Privacy Policy for Shishir Adhikari’s portfolio website — how personal information is handled when you visit or contact via this site.';
+  'Privacy Policy for Shishir Adhikari’s portfolio website: how personal information is handled when you visit or contact via this site.';
 
 export const metadata: Metadata = {
   title,

@@ -15,9 +15,8 @@ export function Skills() {
           <div>
             {portfolioData.skillBars.map((skill) => (
               <div key={skill.label} className='mb-4'>
-                <div className='mb-2 flex justify-between font-mono text-[13px]'>
+                <div className='mb-2 font-mono text-[13px]'>
                   <b className='font-medium text-[var(--text)]'>{skill.label}</b>
-                  <span className='text-[var(--crimson)]'>{skill.percent}%</span>
                 </div>
                 <div className='skill-bar'>
                   <i style={{ width: `${skill.percent}%` }} />

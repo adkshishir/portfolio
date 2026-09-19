@@ -139,7 +139,7 @@ export function Contact() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className='w-full resize-y rounded-md border border-[var(--line)] bg-[var(--bg)] px-3.5 py-3 font-sans text-sm text-[var(--text)] outline-none transition-colors placeholder:text-[var(--dim)] focus:border-[var(--crimson)]'
-                placeholder='Hi Shishir — I have a project idea…'
+                placeholder='Hi Shishir, I have a project idea…'
               />
             </div>
 

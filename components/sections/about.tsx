@@ -35,7 +35,7 @@ export function About() {
               <strong className='font-semibold text-[var(--text)]'>
                 4 years of professional experience
               </strong>{' '}
-              designing, building and deploying modern web applications — from
+              designing, building and deploying modern web applications, from
               public government data portals to healthcare systems and e‑commerce
               platforms.
             </p>

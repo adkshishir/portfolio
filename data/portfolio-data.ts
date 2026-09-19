@@ -11,9 +11,9 @@ export const portfolioData = {
     eyebrow: 'available for new roles & freelance work',
     headline: 'builds full‑stack systems that ship.',
     tagline:
-      'Senior Full Stack Developer based in Pokhara, Nepal — 4+ years turning product ideas into scalable, secure web applications with React, Next.js, NestJS and Node.js.',
+      'Senior Full Stack Developer based in Pokhara, Nepal with 4+ years turning product ideas into scalable, secure web applications with React, Next.js, NestJS and Node.js.',
     profileSummary:
-      "I'm a Senior Full Stack Developer with around 4 years of professional experience designing, building and deploying modern web applications — from public government data portals to healthcare systems and e‑commerce platforms.",
+      "I'm a Senior Full Stack Developer with around 4 years of professional experience designing, building and deploying modern web applications, from public government data portals to healthcare systems and e‑commerce platforms.",
     profileSummaryExtra:
       'I work primarily across the MERN/PERN stack, building scalable backend systems with NestJS, Node.js and Express, and responsive, accessible frontends with React, Next.js, Tailwind CSS and Shadcn/ui. I care about clean architecture, performance, and code that\'s easy for the next developer to pick up.',
     profileSummaryCurrent:
@@ -33,7 +33,7 @@ export const portfolioData = {
       title:
         'Shishir Adhikari | Senior Full Stack Developer | React, Next.js, NestJS',
       description:
-        'Shishir Adhikari — Senior Full Stack Developer from Pokhara, Nepal. 4+ years building scalable web apps with React, Next.js, NestJS and Node.js.',
+        'Shishir Adhikari, Senior Full Stack Developer from Pokhara, Nepal. 4+ years building scalable web apps with React, Next.js, NestJS and Node.js.',
       keywords: [
         'Shishir Adhikari',
         'Senior Full Stack Developer',
@@ -120,7 +120,7 @@ export const portfolioData = {
     {
       company: 'Infomation Care Pvt. Ltd.',
       position: 'Senior Full Stack Developer',
-      period: 'Jan 2025 — Present',
+      period: 'Jan 2025 - Present',
       location: 'Pokhara, Nepal',
       current: true,
       responsibilities: [
@@ -144,7 +144,7 @@ export const portfolioData = {
     {
       company: 'Aarambha IT',
       position: 'Full Stack Developer',
-      period: 'Jun 2024 — Jan 2025',
+      period: 'Jun 2024 - Jan 2025',
       location: 'Pokhara, Nepal',
       current: false,
       responsibilities: [
@@ -167,7 +167,7 @@ export const portfolioData = {
     {
       company: 'Skybase Innovations',
       position: 'Software Developer',
-      period: 'Jul 2023 — May 2024',
+      period: 'Jul 2023 - May 2024',
       location: 'Pokhara, Nepal',
       current: false,
       responsibilities: [

@@ -83,7 +83,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       message:
-        'Sent! Check WhatsApp for my reply — reply there and I\'ll follow up personally.',
+        'Sent! Check WhatsApp for my reply, then reply there and I\'ll follow up personally.',
     });
   } catch (error) {
     console.error('WhatsApp send error:', error);

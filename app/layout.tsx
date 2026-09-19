@@ -69,7 +69,7 @@ export const metadata: Metadata = {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: `${personal.name} — ${personal.title}`,
+        alt: `${personal.name}, ${personal.title}`,
         type: 'image/jpeg',
       },
     ],
@@ -242,7 +242,7 @@ const jsonLd = {
     {
       '@type': 'ProfessionalService',
       '@id': `${siteUrl}/#service`,
-      name: `${personal.name} — Full Stack Development`,
+      name: `${personal.name} Full Stack Development`,
       url: siteUrl,
       provider: {
         '@id': `${siteUrl}/#person`,

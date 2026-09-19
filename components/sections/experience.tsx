@@ -41,7 +41,7 @@ export function Experience() {
                     key={item.title}
                     className='relative mb-2.5 pl-5 text-[14.5px] text-[var(--dim)] before:absolute before:left-0 before:top-0.5 before:text-xs before:text-[var(--crimson)] before:content-["▸"]'>
                     <b className='font-medium text-[var(--text)]'>{item.title}</b>
-                    {' — '}
+                    {': '}
                     {item.detail}
                   </li>
                 ))}
